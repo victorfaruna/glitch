@@ -1,0 +1,79 @@
+.browser-canvas {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 23px;
+  position: relative;
+  background: var(--primary);
+}
+.browser-canvas:focus-visible {
+  outline-offset: -3px;
+}
+.browser-viewport {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 3px 15px color-mix(in oklab, var(--secondary) 5%, transparent);
+  container-type: inline-size;
+  min-width: 0;
+  transition: max-width 220ms ease;
+}
+.viewport-mobile .browser-viewport {
+  max-width: 390px;
+}
+.agent-action-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid color-mix(in oklab, var(--accent) 28%, transparent);
+  border-radius: 7px;
+  background: color-mix(in oklab, var(--accent) 7%, var(--surface));
+  box-shadow: 0 3px 12px color-mix(in oklab, var(--accent) 8%, transparent);
+  width: fit-content;
+  max-width: 90%;
+  margin: 14px auto 0;
+  position: sticky;
+  bottom: 0;
+  color: var(--accent-foreground);
+  font-size: 10px;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.browser-viewport[data-highlight="product"] [data-agent-target="product"],
+.browser-viewport[data-highlight="cart"] [data-agent-target="cart"],
+.browser-viewport[data-highlight="checkout"] [data-agent-target="checkout"],
+.browser-viewport[data-highlight="customer"] [data-agent-target="customer"],
+.browser-viewport[data-highlight="submit"] [data-agent-target="submit"],
+.browser-viewport[data-highlight="confirmation"]
+  [data-agent-target="confirmation"] {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--secondary) 5%, transparent);
+  transition: outline-color 200ms;
+}
+@media (min-width: 1600px) {
+  .browser-canvas {
+    padding: 30px;
+  }
+  .browser-viewport {
+    max-width: 1050px;
+  }
+}
+@media (max-width: 1180px) {
+  .browser-canvas {
+    padding: 16px;
+  }
+}
+@media (max-width: 640px) {
+  .browser-canvas {
+    padding: 11px;
+  }
+  .browser-viewport {
+    border-radius: 6px;
+  }
+}

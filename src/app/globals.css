@@ -1,26 +1,251 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark;
+  exclude: rootcolor, rootscrollgutter;
+  logs: false;
+}
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Semantic roles follow Chainroll: primary is a surface, secondary is text. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f3f3f3;
+  --primary: #ffffff;
+  --secondary: #000000;
+  --subtext: #a2a2a2;
+  --accent: #9d7aef;
+  --neo: oklch(53.167% 0.18059 268.259);
+  --tetiary: #bdffb5;
+  --error: rgb(255, 0, 0);
+  --success: #67cd5b;
+  --surface: #ffffff;
+  --warning: #a57720;
+  --info: #527aa3;
+  --accent-foreground: #7148bc;
+  --error-foreground: #b42332;
+  --success-foreground: #287443;
+  --warning-foreground: #936619;
+  --info-foreground: #426d99;
+  --color-base-300: oklch(91.887% 0.0001 271.152);
+  --user-bubble-bg: #e2ecfc;
+  --user-bubble-text: var(--secondary);
+  --user-bubble-border: rgba(24, 62, 118, 0.12);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: oklch(0% 0 0);
+  --primary: oklch(18.22% 0.00002 271.152);
+  --secondary: #f0f0f0;
+  --subtext: #6d6c6c;
+  --accent: #a692d3;
+  --neo: oklch(48.156% 0.18614 267.205);
+  --tetiary: #bdffb5;
+  --error: rgb(255, 107, 144);
+  --success: #bdffb5;
+  --surface: #202023;
+  --warning: #d6ad62;
+  --info: #8aadd2;
+  --accent-foreground: #bba4e9;
+  --error-foreground: #ff8ba6;
+  --success-foreground: #bdffb5;
+  --warning-foreground: #e6bf7a;
+  --info-foreground: #a3c1e1;
+  --color-base-300: oklch(21.318% 0.00424 264.524);
+  --user-bubble-bg: #183e76;
+  --user-bubble-text: var(--secondary);
+  --user-bubble-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Bridge application tokens to daisyUI, so utilities and controls agree. */
+:root[data-theme] {
+  --color-base-100: var(--surface);
+  --color-base-200: var(--primary);
+  --color-base-content: var(--secondary);
+  --color-primary: var(--primary);
+  --color-primary-content: var(--secondary);
+  --color-secondary: var(--secondary);
+  --color-secondary-content: var(--background);
+  --color-accent: var(--accent);
+  --color-accent-content: #160f24;
+  --color-neutral: var(--secondary);
+  --color-neutral-content: var(--background);
+  --color-info: var(--info);
+  --color-info-content: var(--background);
+  --color-warning: var(--warning);
+  --color-warning-content: var(--background);
+  --color-error: var(--error);
+  --color-error-content: var(--background);
+  --color-success: var(--success);
+  --color-success-content: #10250d;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+  --line: color-mix(in oklab, var(--subtext) 52%, transparent);
+  --text-muted: color-mix(in oklab, var(--secondary) 60%, var(--surface));
+  --muted: var(--text-muted);
+  --subtle: var(--text-muted);
+  --workspace: var(--background);
+  --violet-wash: color-mix(in oklab, var(--accent) 8%, var(--surface));
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-subtext: var(--subtext);
+  --color-accent: var(--accent);
+  --color-neo: var(--neo);
+  --color-tetiary: var(--tetiary);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --font-sans: var(--font-satoshi-source);
+  --font-satoshi: var(--font-satoshi-source);
+  --breakpoint-cxl: 90rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--background) var(--primary);
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--secondary);
+  font-family: var(--font-satoshi-source), Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.83rem;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+button,
+a,
+input,
+select,
+textarea,
+[role="separator"] {
+  outline-offset: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+}
+button,
+a {
+  transition:
+    background-color 140ms,
+    border-color 140ms,
+    color 140ms,
+    box-shadow 140ms;
+}
+button svg,
+span > svg {
+  flex-shrink: 0;
+}
+::selection {
+  background: color-mix(in oklab, var(--accent) 25%, transparent);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--background);
+  border-radius: 999px;
+  border: 2px solid var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+.round-button {
+  @apply size-8 rounded-full border-[0.5px] border-subtext/60 bg-primary flex items-center justify-center;
+}
+.action-button {
+  @apply flex items-center justify-center rounded-full bg-background text-secondary h-12 w-20 outline outline-subtext/30 outline-offset-3;
+}
+.item-card {
+  @apply relative flex h-full w-full flex-col gap-4 overflow-y-hidden rounded-xl border border-secondary/0 bg-primary p-4;
+}
+.center-children {
+  @apply flex items-center justify-center;
+}
+.eyebrow {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.1s ease-out both;
+}
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

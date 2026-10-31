@@ -1,0 +1,25 @@
+interface LogoProps {
+  /** Tailwind / CSS class forwarded to the <svg> element. */
+  className?: string;
+}
+
+/**
+ * The Glitch wordmark symbol rendered as an inline SVG.
+ * The fill is driven by `currentColor` so it automatically respects
+ * the active light/dark theme token (--secondary / var(--color-base-content)).
+ * Wrap it in a utility like `text-accent` or `text-secondary` to tint it.
+ */
+export function Logo({ className = "" }: LogoProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 720 720"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <title>Glitch symbol</title>
+      <path d="M360 0H448C465.673 0 480 14.327 480 32V208C480 225.673 465.673 240 448 240H360A120 120 0 1 0 480 360V272C480 254.327 494.327 240 512 240H688C705.673 240 720 254.327 720 272V448C720 465.673 705.673 480 688 480H600A120 120 0 0 0 480 600V688C480 705.673 465.673 720 448 720H360A360 360 0 0 1 360 0Z" />
+    </svg>
+  );
+}

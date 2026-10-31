@@ -1,0 +1,116 @@
+.session-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.status-idle {
+  color: var(--text-muted);
+}
+.status-idle svg {
+  width: 6px;
+  fill: var(--text-muted);
+  stroke: none;
+  margin-right: 2px;
+}
+.status-running {
+  color: var(--accent-foreground);
+}
+.status-paused {
+  color: var(--warning-foreground);
+}
+.status-manual {
+  color: var(--info-foreground);
+}
+.status-completed {
+  color: var(--success-foreground);
+}
+.status-error {
+  color: var(--error-foreground);
+}
+.workspace-empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 40px 25px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  text-align: center;
+}
+.empty-state-symbol {
+  width: 75px;
+  height: 75px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  position: relative;
+  box-shadow: 0 5px 20px color-mix(in oklab, var(--secondary) 5%, transparent);
+}
+.empty-state-symbol > span {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  border: 3px solid var(--workspace);
+  background: var(--primary);
+  color: var(--text-muted);
+  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.workspace-empty-state > h2 {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  color: var(--secondary);
+  margin-top: 12px;
+}
+.workspace-empty-state > p {
+  color: var(--text-muted);
+  font-size: 12px;
+  max-width: 310px;
+  line-height: 1.9;
+  margin: 13px 0 22px;
+}
+.workspace-empty-state > .btn {
+  color: var(--text-muted);
+  border-color: var(--line);
+}
+.empty-state-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: 10px;
+  max-width: 340px;
+  margin-top: 25px;
+  line-height: 1.8;
+}
+@media (max-width: 640px) {
+  .workspace-empty-state {
+    padding: 30px 19px;
+  }
+  .workspace-empty-state > h2 {
+    font-size: 23px;
+  }
+  .workspace-empty-state > p {
+    font-size: 11px;
+  }
+  .workspace-empty-state .empty-state-note {
+    font-size: 9px;
+  }
+}
